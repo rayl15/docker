@@ -25,3 +25,5 @@ Remove old version:
 ```sudo apt-get install docker-ce docker-ce-cli containerd.io```
 
 
+Verifying Docker:
+``` sudo docker run -it nginx sh ```
