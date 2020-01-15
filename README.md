@@ -26,4 +26,5 @@ Remove old version:
 
 
 Verifying Docker:
-``` sudo docker run -it nginx sh ```
+``` sudo docker run hello-world ```
+
