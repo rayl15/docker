@@ -3,28 +3,21 @@
 # Learning the Basics of Docker
 ---
 
-##Introduction to Docker
-[(Back to Top)](#table-of-contents)
+## Introduction to Docker
 - `Images` are the templates to build containers on.
     - Or one could base a custom image off a base image.
 - `Containers` are running instances of images.
 
-##Containers vs VirtualMachines
-[(Back to Top)](#table-of-contents)
-Skip
+## Containers vs VirtualMachines
 
-##Docker Architecture
-[(Back to Top)](#table-of-contents)
-Skip
+## Docker Architecture
 
-##Docker Installation
-[(Back to Top)](#table-of-contents)
+## Docker Installation
 ```
 sudo apt-get install -y docker docker.io docker-engine
 ```
 
-##Creating our First Image
-[(Back to Top)](#table-of-contents)
+## Creating our First Image
 
 First to see our images and check our docker version:
 ```
@@ -56,7 +49,7 @@ docker ps -a
 
 We can refer to a Container or Image by `IMAGE ID`, `CONTAINER_ID` or either ones `NAME`
 
-####Pull an image
+#### Pull an image
 ```
 docker pull ubuntu (would be latest)
 docker pull ubuntu:trusty (Or any tag listed in dockerhub)
@@ -64,7 +57,7 @@ docker pull ubuntu:trusty (Or any tag listed in dockerhub)
 
 "Container Layers build the docker image"
 
-####Launch container
+#### Launch container
 (i = interactive, -t = attach to terminal)
 This will launch the container, but not keep it running once we exit
 
@@ -84,52 +77,52 @@ docker ps
 docker attach adoring_einstein  (Logs us in)
 ```
 
-####Keep the container running in Background
+#### Keep the container running in Background
 (disconnected/daemonized)
 
 ```
 docker run -itd ubuntu:xenial /bin/bash
 ```
 
-####Run another Instance
+#### Run another Instance
 
 ```
 docker run -itd ubuntu:xenial /bin/bash
 ```
 
-####Info about the Base image
+#### Info about the Base image
 ```
 docker inspect ubuntu:xenial
 docker ps  (See the different names)
 ```
 
-####Info about Container
+#### Info about Container
 ```
 docker ps -a
 docker inspect compassionate_bhaskara
 docker inspect compassionate_bhaskara | grep IP
 ```
 
-####Going into container
+#### Going into container
 
 ```
 docker attach compassionate_bhaskara
 <Enter>
 ```
 
-####Stopping Containers
+#### Stopping Containers
 ```
 docker stop <name>
 docker ps -a
 ```
 
-####Searching for containers
+#### Searching for containers
 ```
 docker search ruby
 docker search training/sinatra
 ```
 
-####Instance Examples
+#### Instance Examples
 ```
 docker pull training/sinatra
 docker run -it training/sinatra /bin/bash
@@ -137,20 +130,20 @@ gem
 gem list --local
 ```
 
-####Create a file in this instance
+#### Create a file in this instance
 ```
 cd /root
 echo "Testing" > test.txt
 exit
 ```
 
-####Notice new instances don't have our old items
+#### Notice new instances don't have our old items
 ```
 docker run -it training/sinatra /bin/bash
 ls /root
 ```
 
-####We can reboot our old instance
+#### We can reboot our old instance
 ```
 docker ps -a
 docker restart sad_bohr
@@ -158,8 +151,7 @@ docker attach sad_bohr
 ls /root         ;(Our test.txt remains)
 ```
 
-##Packaging a custom container
-[(Back to Top)](#table-of-contents)
+## Packaging a custom container
 
 Instantiate a Container and update some items
 ```
@@ -189,7 +181,7 @@ docker images
 docker run -it imboyus/ubuntusshd:v1 /bin/bash
 ```
 
-####Build a Dockerfile from box
+#### Build a Dockerfile from box
 
 ```
 vim Dockerfile
@@ -210,8 +202,7 @@ docker images
 docker run -t imboyus/ubuntusshdonly:v2 /bin/bash
 ```
 
-##Running Container Commands with Docker
-[(Back to Top)](#table-of-contents)
+## Running Container Commands with Docker
 
 ```
 docker images
@@ -225,7 +216,7 @@ ps
 - Processes (`ps`) are contained within the docker container,
 - Yet, the perfomance (`top`) shows the host system performance.
 
-####See the logs from a container (Running or not running)
+#### See the logs from a container (Running or not running)
 ```
 docker ps -a
 docker restart cocky_archimedes
@@ -233,7 +224,7 @@ docker ps
 docker logs cocky_archimedes
 ```
 
-####Run commands on a running container
+#### Run commands on a running container
 Exec only works on running containers nor will it auto-start it.
 ```
 docker exec cocky_archimedes /bin/cat /etc/profile
@@ -256,7 +247,7 @@ ps -a  (Notice this creates an instance, though not running)
 docker logs admiring_meitner
 ```
 
-####Containerize
+#### Containerize
 
 ```
 docker run -d ubuntu:xenial /bin/bash -c "while true; do echo  HELLO; sleep 1; done"
@@ -267,7 +258,6 @@ docker stop lonely_bose
 ```
 
 ##Exposing Container with Port Redirects
-[(Back to Top)](#table-of-contents)
 
 A port must be exposed to the underlying Host.
 
@@ -346,8 +336,7 @@ docker start cocky_boyd
 docker exec -u 0 -it cocky_boyd /bin/bash
 ```
 
-##Dockerfile Directives: RUN Order of Execution
-[(Back to Top)](#table-of-contents)
+## Dockerfile Directives: RUN Order of Execution
 
 `Folder: buids/02_CustomMessage`
 
@@ -367,7 +356,7 @@ docker run -it centos7/config:v1 /bin/bash
 cat /etc/exports.list
 ```
 
-##Dockerfile Directives: ENV
+## Dockerfile Directives: ENV
 [(Back to Top)](#table-of-contents)
 
 `Folder: buids/03_JavaInstall`
@@ -397,7 +386,6 @@ env     (Now we see JAVA_HOME global)
 ```
 
 ##Dockerfile Directives: CMD vs RUN
-[(Back to Top)](#table-of-contents)
 
 `Folder: buids/04_EchoServer`
 
@@ -411,8 +399,7 @@ docker images
 docker run centos7/echo:v1  ; Should see an echo from the CMD
 ```
 
-##Dockerfile Directives: ENTRYPOINT
-[(Back to Top)](#table-of-contents)
+## Dockerfile Directives: ENTRYPOINT
 
 `Folder: buids/05_Entry`
 
@@ -433,8 +420,7 @@ docker run centos7/entry:v1                               ; Outputs default CMD
     - `ENTRYPOINT` - Runs no matter what
     - `CMD` - CAN be overwritten for a command, eg: in an echo example above
 
-##Dockerfile Directives: EXPOSE
-[(Back to Top)](#table-of-contents)
+## Dockerfile Directives: EXPOSE
 
 `Folder: buids/06_ApacheInstallation`
 
