@@ -17,8 +17,6 @@
 sudo apt-get install -y docker docker.io docker-engine
 ```
 
-## Creating our First Image
-
 First to see our images and check our docker version:
 ```
 docker images
