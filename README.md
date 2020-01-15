@@ -139,7 +139,7 @@ docker run -t sourcefuse/nginx:v1 /bin/sh
 ```
 
 #### Docker Ports
-##Exposing Container with Port Redirects
+## Exposing Container with Port Redirects
 
 A port must be exposed to the underlying Host.
 
