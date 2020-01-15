@@ -572,7 +572,6 @@ docker network rm mybridge01
 ```
 
 ##Docker Network: Assign to Containers
-[(Back to Top)](#table-of-contents)
 
 Control how IP's are assigned to our Containers.
 
