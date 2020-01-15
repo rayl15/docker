@@ -155,9 +155,7 @@ docker run -d -p 8080:80 nginx:latest
 docker ps
 
 In `Dockerfile`, add:
-```
-EXPOSE 80
-```
+``` EXPOSE 80
 ```
 #### See the logs from a container (Running or not running)
 ```
