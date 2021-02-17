@@ -11,6 +11,7 @@ pipeline {
       steps {
         sh 'echo "hello world"'
         sleep 20
+        cleanWs(cleanWhenSuccess: true)
       }
     }
 
